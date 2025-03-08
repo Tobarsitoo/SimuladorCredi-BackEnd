@@ -6,11 +6,25 @@ const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
 
-// Habilitar CORS
-app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
+/**
+ * Configuración de middleware global.
+ */
 
+// Habilitar CORS
+app.use(cors({ 
+    origin: process.env.FRONTEND_URL, 
+    credentials: true 
+}));
+
+// Middleware para parsear JSON en las solicitudes.
 app.use(express.json());
-app.use("/api/auth", authRoutes);
+
+/**
+ * Definición de rutas de la API.
+ */
+app.use("/api/auth", authRoutes); // Rutas de autenticación
+
+// Middleware de manejo de errores.
 app.use(errorHandler);
 
 module.exports = app;
