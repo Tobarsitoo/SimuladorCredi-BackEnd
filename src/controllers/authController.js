@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs"); // ❌ No se usa en este código, considera eliminarlo si no es necesario.
-const { getUserByCedula } = require("../models/UserModel");
+const { getUserByCedula } = require("../models/userModel");
 
 /**
  * Controlador para manejar el inicio de sesión.
