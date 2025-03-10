@@ -22,14 +22,16 @@ async function loginAsociado(req, res, next) {
 
     // Validar existencia del usuario y coincidencia de datos sensibles
     if (!user || user.FECN05 !== fechaNa || user.FEXP05 !== fechaExp) {
-      return res.status(401).json({ message: "Credenciales incorrectas." });
+      return res.status(401).json({ 
+        message: "Credenciales incorrectas. Verifica que tus credenciales sean las correctas o que seas asociado." 
+      });
     }
 
     // Generar token de autenticación
     const token = jwt.sign(
-      { 
-        cedula: user.NNIT05, 
-        nombre: user.DESC05.trim() 
+      {
+        cedula: user.NNIT05,
+        nombre: user.DESC05.trim()
       },
       process.env.JWT_SECRET,
       { expiresIn: "1h" } // Expiración del token
